@@ -434,15 +434,15 @@ class RepeaterPea(Plant):
 
     def attacking(self):
         if self.shoot_timer == 0:
-            self.shoot_timer = self.current_time - 700
-        elif (self.current_time - self.shoot_timer >= 1400):
+            self.shoot_timer = self.current_time - 400
+        elif (self.current_time - self.shoot_timer >= 800):
             self.first_shot = True
             self.bullet_group.add(Bullet(self.rect.right - 15, self.rect.y, self.rect.y,
                                          c.BULLET_PEA, c.BULLET_DAMAGE_NORMAL, effect=None))
             self.shoot_timer = self.current_time
             # 播放发射音效
             c.SOUND_SHOOT.play()
-        elif self.first_shot and (self.current_time - self.shoot_timer) > 100:
+        elif self.first_shot and (self.current_time - self.shoot_timer) > 400:
             self.first_shot = False
             self.bullet_group.add(Bullet(self.rect.right - 15, self.rect.y, self.rect.y,
                                          c.BULLET_PEA, c.BULLET_DAMAGE_NORMAL, effect=None))
@@ -452,7 +452,7 @@ class RepeaterPea(Plant):
     def setAttack(self):
         self.state = c.ATTACK
         if self.shoot_timer != 0:
-            self.shoot_timer = self.current_time - 700
+            self.shoot_timer = self.current_time - 400
 
 class ThreePeaShooter(Plant):
     def __init__(self, x, y, bullet_groups, map_y, background_type):
